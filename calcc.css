@@ -1,63 +1,156 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Roboto',sans-serif;
 }
 
-body {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(45deg, #0a0a0a, #3a4452);
+body{
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(270deg,#0a0a0a,#1c1c1c,#3a4452,#000000);
+background-size:600% 600%;
+animation:gradientBG 12s ease infinite;
 }
 
-.calculator {
-    border: 1px solid #717377;
-    padding: 20px;
-    border-radius: 16px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.9);
+@keyframes gradientBG{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-input {
-    width: 320px;
-    border: none;
-    padding: 24px;
-    margin: 10px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
-    font-size: 40px;
-    text-align: right;
-    cursor: pointer;
-    color: #fff;
+/* Calculator */
+
+.calculator{
+border:1px solid rgba(255,255,255,0.1);
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+box-shadow:0px 0px 40px rgba(0,0,0,0.8);
+animation:float 4s ease-in-out infinite;
 }
 
-input::placeholder {
-    color: #ffffff
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0px);}
 }
 
-button {
-    border: none;
-    width: 60px;
-    height: 60px;
-    margin: 10px;
-    border-radius: 50%;
-    background: transparent;
-    color: #fff;
-    font-size: 20px;
-    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-}    
+/* Display */
 
-.equalbtn {
-    background-color: #fb7c14;
+input{
+width:320px;
+border:none;
+padding:24px;
+margin:10px;
+border-radius:10px;
+background:rgba(0,0,0,0.4);
+box-shadow:inset 0px 0px 10px rgba(0,0,0,0.8);
+font-size:40px;
+text-align:right;
+color:#fff;
 }
 
-.operator {
-    color: greenyellow;
+input::placeholder{
+color:#aaa;
+}
+
+/* Buttons */
+
+button{
+border:none;
+width:65px;
+height:65px;
+margin:10px;
+border-radius:50%;
+background:rgba(255,255,255,0.05);
+color:#fff;
+font-size:20px;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+
+box-shadow:
+-5px -5px 10px rgba(255,255,255,0.1),
+5px 5px 15px rgba(0,0,0,0.7);
+
+transition:all 0.2s ease;
+}
+
+/* Hover neon glow */
+
+button:hover{
+transform:scale(1.1);
+box-shadow:
+0 0 10px #00ffff,
+0 0 20px #00ffff,
+0 0 40px rgba(0,255,255,0.6);
+}
+
+/* 3D press */
+
+button:active{
+transform:scale(0.9);
+box-shadow:
+inset 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Operator buttons */
+
+.operator{
+color:#00ffc8;
+text-shadow:0 0 10px #00ffc8;
+}
+
+/* Equal button */
+
+.equalbtn{
+background:linear-gradient(45deg,#ff7b00,#ffb347);
+box-shadow:0 0 20px rgba(255,140,0,0.8);
+}
+
+/* Ripple effect */
+
+.ripple{
+position:absolute;
+border-radius:50%;
+transform:scale(0);
+animation:ripple 600ms linear;
+background:rgba(255,255,255,0.6);
+}
+
+@keyframes ripple{
+to{
+transform:scale(4);
+opacity:0;
+}
+}
+
+/* Particle */
+
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+background:#00ffff;
+border-radius:50%;
+pointer-events:none;
+animation:particle 600ms linear forwards;
+}
+
+@keyframes particle{
+0%{
+opacity:1;
+transform:translate(0,0);
+}
+100%{
+opacity:0;
+transform:translate(var(--x),var(--y));
+}
 }
